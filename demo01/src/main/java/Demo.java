@@ -5,5 +5,6 @@ public class Demo {
         System.out.println("hello");
         System.out.println("world");
         System.out.println("测试仓库变更");
+        System.out.println("本地远程变更再测");
     }
 }
