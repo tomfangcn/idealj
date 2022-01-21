@@ -5,15 +5,16 @@ import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
+import static tool.FlinkEnvTools.MockInput;
 import static tool.FlinkEnvTools.*;
 
-public class FirstJob {
+public class BatchJob {
 
 
     public static void main(String[] args) throws Exception {
 
 
-        final StreamExecutionEnvironment env = getEnv();
+        final StreamExecutionEnvironment env = getBatchEnv();
 
         DataStream<Person> input1 = env.fromElements(
                 new Person("ZHANSAN", 10),
@@ -22,8 +23,6 @@ public class FirstJob {
         );
 
         DataStreamSource<Person> input2 = env.fromCollection(MockInput.persons());
-
-        DataStream<String> socket1 = env.socketTextStream("localhost", 9999);
 
 
 //        DataStream<String> file1 = args.length >= 1 ? env.readTextFile(args[0])
@@ -34,9 +33,7 @@ public class FirstJob {
 
         filter.print();
 
-        socket1.map(stat -> stat.concat("!!")).print();
-
-        env.execute("first job");
+        env.execute("batch job");
 
     }
 
