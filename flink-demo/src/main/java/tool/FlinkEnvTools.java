@@ -4,6 +4,8 @@ import bootstrap.test.Person;
 import org.apache.flink.api.common.RuntimeExecutionMode;
 import org.apache.flink.api.java.tuple.Tuple3;
 import org.apache.flink.api.java.tuple.Tuple4;
+import org.apache.flink.configuration.Configuration;
+import org.apache.flink.configuration.RestOptions;
 import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import scala.Int;
@@ -26,6 +28,14 @@ public class FlinkEnvTools {
         return StreamExecutionEnvironment.getExecutionEnvironment().setParallelism(parallelism);
     }
 
+    public static StreamExecutionEnvironment getEnv4UI(int parallelism) {
+        // with web ui port : 8081-8089
+        Configuration conf = new Configuration();
+        conf.setString(RestOptions.BIND_PORT, "8081-8089");
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(conf);
+        env.setParallelism(parallelism);
+        return env;
+    }
 
     public static StreamExecutionEnvironment getBatchEnv() {
         return StreamExecutionEnvironment.getExecutionEnvironment().setRuntimeMode(RuntimeExecutionMode.BATCH);
