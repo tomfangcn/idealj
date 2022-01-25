@@ -33,7 +33,7 @@ public class KeyedProcessJob {
 
         DataStream<Tuple4<String, Integer, String, Long>> stuWithTime = stu.map(KeyedProcessJob::split).assignTimestampsAndWatermarks(
                 WatermarkStrategy
-                        .<Tuple4<String, Integer, String, Long>>forBoundedOutOfOrderness(Duration.ofSeconds(0))
+                        .<Tuple4<String, Integer, String, Long>>forBoundedOutOfOrderness(Duration.ofSeconds(5))
                         .withTimestampAssigner((event, timestamp) -> event.f3 * 1000));
 
         stuWithTime.keyBy(s->s.f0).process(new CountWithTimeoutFunction()).print();
@@ -93,7 +93,8 @@ public class KeyedProcessJob {
 
             state.update(current);
 
-
+            log.warn("timestamp():{} ,\ntimerService().currentWatermark(): {},\ntimerService().currentProcessingTime(): {}"
+                    ,ctx.timestamp(),ctx.timerService().currentWatermark(),ctx.timerService().currentProcessingTime());
             ctx.timerService().registerEventTimeTimer(current.lastModified + TRIGGERTIME);
         }
 
