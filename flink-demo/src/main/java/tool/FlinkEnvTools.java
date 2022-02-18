@@ -8,6 +8,9 @@ import org.apache.flink.configuration.Configuration;
 import org.apache.flink.configuration.RestOptions;
 import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.table.api.EnvironmentSettings;
+import org.apache.flink.table.api.TableEnvironment;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import scala.Int;
 
 import java.util.ArrayList;
@@ -41,6 +44,18 @@ public class FlinkEnvTools {
         return StreamExecutionEnvironment.getExecutionEnvironment().setRuntimeMode(RuntimeExecutionMode.BATCH);
     }
 
+    public static TableEnvironment directTblEnv() {
+        EnvironmentSettings settings = EnvironmentSettings
+                .newInstance()
+                .inStreamingMode()
+                .build();
+
+        return TableEnvironment.create(settings);
+    }
+
+    public static StreamTableEnvironment tblEnvFromStreamEnv(StreamExecutionEnvironment env) {
+        return StreamTableEnvironment.create(env);
+    }
 
     public static class MockInput {
 
