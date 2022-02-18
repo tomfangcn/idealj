@@ -2,3 +2,5 @@
 /.idea
 # 编译后的CLASS文件
 /target
+
+/input/data/tablesink/*
