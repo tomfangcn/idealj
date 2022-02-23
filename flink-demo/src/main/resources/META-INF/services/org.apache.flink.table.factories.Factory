@@ -15,4 +15,5 @@
 
 bootstrap.test.connector.socket.SocketDynamicTableFactory
 bootstrap.test.connector.socket.ChangelogCsvFormatFactory
+bootstrap.test.connector.socket.RetractCsvFormatFactory
 
