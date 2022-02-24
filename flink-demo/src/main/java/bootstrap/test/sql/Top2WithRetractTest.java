@@ -23,7 +23,8 @@ public class Top2WithRetractTest {
 //        INSERT|2|orange|7
 //        INSERT|3|tea|5
 //        INSERT|4|coco|3
-        tEnv.executeSql("CREATE TABLE beverage (id INT PRIMARY KEY,name STRING, price INT)" +
+        // PRIMARY KEY
+        tEnv.executeSql("CREATE TABLE beverage (id INT,name STRING PRIMARY KEY, price INT)" +
                 "WITH (" +
                 " 'connector' = 'socket'," +
                 " 'hostname' = 'localhost'," +

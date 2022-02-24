@@ -39,12 +39,7 @@ public class RetractCsvFormat implements DecodingFormat<DeserializationSchema<Ro
 
     @Override
     public ChangelogMode getChangelogMode() {
-        // define that this format can produce INSERT and DELETE rows
-        return ChangelogMode.newBuilder()
-                .addContainedKind(RowKind.INSERT)
-                .addContainedKind(RowKind.DELETE)
-                .addContainedKind(RowKind.UPDATE_AFTER)
-                .addContainedKind(RowKind.UPDATE_AFTER)
-                .build();
+        // define that this format can produce ALL
+        return ChangelogMode.all();
     }
 }
