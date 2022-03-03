@@ -1,14 +1,14 @@
 package tool;
 
-import bootstrap.test.state.StateTest;
-import lombok.SneakyThrows;
 import org.apache.flink.streaming.api.CheckpointingMode;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
 import static tool.FlinkEnvTools.getEnv;
+import static tool.FlinkEnvTools.getEnv4UI;
 
 public abstract class AppTest {
 
+//    protected StreamExecutionEnvironment env = getEnv4UI(4);
     protected StreamExecutionEnvironment env = getEnv();
 
     protected abstract void runTask();
@@ -28,7 +28,7 @@ public abstract class AppTest {
         }
     }
 
-    private void init() {
+    protected void init() {
         System.out.println("start to init config, 重写 请考虑 父类 初始化 内容");
         env.setParallelism(1);
         env.enableCheckpointing(5000);
