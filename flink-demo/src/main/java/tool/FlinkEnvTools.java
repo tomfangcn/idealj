@@ -1,6 +1,8 @@
 package tool;
 
 import bootstrap.test.Person;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.flink.api.common.RuntimeExecutionMode;
 import org.apache.flink.api.common.state.MapStateDescriptor;
 import org.apache.flink.api.common.typeinfo.BasicTypeInfo;
@@ -134,6 +136,15 @@ public class FlinkEnvTools {
 
         public static DataStream<Row> socket9998(StreamExecutionEnvironment env, String delimiter) {
             return env.socketTextStream("localhost", 9998).map(line -> Row.of((Object[]) line.split(delimiter)));
+        }
+
+        public static DataStream<String> so9900JSON(StreamExecutionEnvironment env) {
+            return env.socketTextStream("localhost", 9900);
+        }
+
+
+        public static DataStream<String> so9901JSON(StreamExecutionEnvironment env) {
+            return env.socketTextStream("localhost", 9901);
         }
     }
 }
