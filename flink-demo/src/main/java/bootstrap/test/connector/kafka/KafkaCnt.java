@@ -1,7 +1,6 @@
 package bootstrap.test.connector.kafka;
 
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.table.api.TableEnvironment;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 
 import static tool.FlinkEnvTools.getEnv;
@@ -48,7 +47,7 @@ public class KafkaCnt {
                 "'connector'='kafka'," +
                 "'properties.bootstrap.servers'='192.168.0.113:9092'," +
                 "'topic'='order'," +
-                "'format'='json'" +
+                "'format'='csv'" +
                 " )");
 
 //        tenv.createStatementSet()

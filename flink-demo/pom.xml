@@ -80,14 +80,39 @@
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-connector-kafka_2.11</artifactId>
-            <version>1.14.3</version>
+            <version>${flink.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-json</artifactId>
-            <version>1.14.3</version>
+            <version>${flink.version}</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-jdbc_2.11</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.17</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.alibaba.ververica</groupId>-->
+<!--            <artifactId>flink-connector-mysql-cdc</artifactId>-->
+<!--            <version>1.4.0</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>org.apache.flink</groupId>-->
+<!--            <artifactId>flink-shaded-guava</artifactId>-->
+<!--            <version>30.1.1-jre-14.0</version>-->
+<!--        </dependency>-->
 
         <!--flink 无关-->
         <dependency>
